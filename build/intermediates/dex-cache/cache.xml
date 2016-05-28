@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/dev_tool/adt-bundle-mac-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha1/constraint-layout-solver-1.0.0-alpha1.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="78d61c347aa5002119e3c17bffcbebf28fe07b0b">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.0-alpha1_2fbeb151a7b1530877fd05b4b212562ca2032afb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-alpha1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="ea579447f9afb1fbcb28e150e1cd4bfe7f56e75b">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/com.android.support.constraint-constraint-layout-1.0.0-alpha1_6996bda9bb9ed0b75780f364008fa51b36cb0338.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/dev_tool/adt-bundle-mac-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha1/constraint-layout-solver-1.0.0-alpha1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="78d61c347aa5002119e3c17bffcbebf28fe07b0b">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/constraint-layout-solver-1.0.0-alpha1_2fbeb151a7b1530877fd05b4b212562ca2032afb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-alpha1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="ea579447f9afb1fbcb28e150e1cd4bfe7f56e75b">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/com.android.support.constraint-constraint-layout-1.0.0-alpha1_6996bda9bb9ed0b75780f364008fa51b36cb0338.jar" />
+    </item>
+
+</items>
