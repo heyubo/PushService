@@ -1,10 +1,14 @@
 apply plugin: 'com.android.application'
 
+repositories {
+  maven { url 'https://maven.fabric.io/public' }
+}
+
 android {
   compileSdkVersion 23
   buildToolsVersion "23.0.2"
   defaultConfig {
-    applicationId "com.coodays.pushservicelibrary"
+    applicationId "com.coodays.pushtest"
     minSdkVersion 14
     targetSdkVersion 23
     versionCode 1
@@ -24,9 +28,12 @@ android {
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
-  compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha1'
+  /*compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha1'*/
   testCompile 'junit:junit:4.12'
   androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
   androidTestCompile 'com.android.support.test:runner:0.5'
   androidTestCompile 'com.android.support:support-annotations:23.3.0'
+  compile project(':pushservicelib')
+
+  compile 'com.jakewharton:butterknife:7.0.1'
 }
