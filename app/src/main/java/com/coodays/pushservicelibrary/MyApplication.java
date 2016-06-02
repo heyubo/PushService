@@ -1,4 +1,4 @@
-package com.coodays.pushtest;
+package com.coodays.pushservicelibrary;
 
 import android.app.Application;
 import com.coodays.pushservicelib.push.PushManager;

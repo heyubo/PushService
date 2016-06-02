@@ -1,4 +1,4 @@
-package com.coodays.pushtest;
+package com.coodays.pushservicelibrary;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
