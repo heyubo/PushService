@@ -8,7 +8,6 @@ import com.coodays.pushservicelib.utils.Tools;
 
 /**
  * @author zhuj
- * @time 2016/4/28 11:17
  */
 class HuaweiPush extends BasePush {
 

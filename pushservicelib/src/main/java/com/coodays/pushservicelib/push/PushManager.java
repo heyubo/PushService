@@ -7,7 +7,6 @@ import com.coodays.pushservicelib.utils.SharedPreferencesUtils;
 
 /**
  * @author zhuj
- * @time 2016/3/30 16:25
  * 获得推送
  */
 public class PushManager {

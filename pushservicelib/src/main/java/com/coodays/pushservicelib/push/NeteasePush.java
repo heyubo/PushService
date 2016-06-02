@@ -32,7 +32,6 @@ import rx.schedulers.Schedulers;
 
 /**
  * @author zhuj
- * @time 2016/3/30 16:32
  * 云信推送
  * 用app_user_id当做云信账号
  * 包括登入, 注册, 上传token, 接收推送消息等

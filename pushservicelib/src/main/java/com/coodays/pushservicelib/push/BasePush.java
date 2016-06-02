@@ -24,7 +24,6 @@ import rx.schedulers.Schedulers;
 
 /**
  * @author zhuj
- * @time 2016/3/30 16:25
  * 基本推送类型,上传token, 解析推送消息
  */
 public abstract class BasePush {

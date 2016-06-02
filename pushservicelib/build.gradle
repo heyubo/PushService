@@ -32,7 +32,7 @@ publish {
   userOrg = 'heyubo'
   groupId = 'com.coodays'
   artifactId = 'pushservicelibrary'
-  publishVersion = '1.0.0'
+  publishVersion = '1.0.1'
   desc = '封装小米、华为、云信消息推送服务'
   website = 'https://github.com/heyubo/PushService'
 }

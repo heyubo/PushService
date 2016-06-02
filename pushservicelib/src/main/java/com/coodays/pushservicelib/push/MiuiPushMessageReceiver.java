@@ -12,7 +12,6 @@ import java.util.List;
 
 /**
  * @author zhuj
- * @time 2016/4/22 10:50
  * 小米推送类型广播
  */
 public class MiuiPushMessageReceiver extends PushMessageReceiver {

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="netty-4.0.23-for-yx.final">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/pushservicelib/libs/netty-4.0.23-for-yx.final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

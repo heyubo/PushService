@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 
 /**
  * @author zhuj
- * @time 2016/5/26 9:47
  * 访问服务器网络成功，但业务错误
  * 针对服务器code 除2000以外的非正常情况
  */

@@ -5,7 +5,6 @@ import com.coodays.pushservicelib.push.PushManager;
 
 /**
  * @author zhuj
- * @time 2016/6/1 14:42
  */
 public class MyApplication extends Application{
 

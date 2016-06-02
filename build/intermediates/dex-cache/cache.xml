@@ -3,39 +3,651 @@
 
     <item
         is-multidex="false"
-        jar="/Users/panliuting/dev_tool/adt-bundle-mac-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha1/constraint-layout-solver-1.0.0-alpha1.jar"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.3/5a1aef6a9d56efb473b8be6b66689077e7317c45/rxjava-1.1.3.jar"
         jumboMode="false"
         optimize="false"
         revision="23.0.2"
-        sha1="78d61c347aa5002119e3c17bffcbebf28fe07b0b">
-        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.0-alpha1_2fbeb151a7b1530877fd05b4b212562ca2032afb.jar" />
+        sha1="5a1aef6a9d56efb473b8be6b66689077e7317c45">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/rxjava-1.1.3_5c89a3ea2805c38e95f81178362c4f488b4bdb93.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/panliuting/dev_tool/adt-bundle-mac-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha1/constraint-layout-solver-1.0.0-alpha1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.2"
-        sha1="78d61c347aa5002119e3c17bffcbebf28fe07b0b">
-        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/constraint-layout-solver-1.0.0-alpha1_2fbeb151a7b1530877fd05b4b212562ca2032afb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-alpha1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.2"
-        sha1="ea579447f9afb1fbcb28e150e1cd4bfe7f56e75b">
-        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/com.android.support.constraint-constraint-layout-1.0.0-alpha1_6996bda9bb9ed0b75780f364008fa51b36cb0338.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-alpha1/jars/classes.jar"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.artemzin.rxjava/proguard-rules/1.1.3.0/jars/classes.jar"
         jumboMode="false"
         optimize="false"
         revision="23.0.2"
-        sha1="ea579447f9afb1fbcb28e150e1cd4bfe7f56e75b">
-        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/com.android.support.constraint-constraint-layout-1.0.0-alpha1_6996bda9bb9ed0b75780f364008fa51b36cb0338.jar" />
+        sha1="723900cd6f10a30cfe55e97c0f516eab9ba402eb">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/com.artemzin.rxjava-proguard-rules-1.1.3.0_3ce36fc7eb736b790463e2607d228eb638420014.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.3/5a1aef6a9d56efb473b8be6b66689077e7317c45/rxjava-1.1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="5a1aef6a9d56efb473b8be6b66689077e7317c45">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/rxjava-1.1.3_5c89a3ea2805c38e95f81178362c4f488b4bdb93.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/logging-interceptor/3.0.1/1d232df84491c0453e077002509911301109409d/logging-interceptor-3.0.1.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="1d232df84491c0453e077002509911301109409d">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/logging-interceptor-3.0.1_a405e1eec2867f23c1ba419d109b5c602d5684fa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.artemzin.rxjava/proguard-rules/1.1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="723900cd6f10a30cfe55e97c0f516eab9ba402eb">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/com.artemzin.rxjava-proguard-rules-1.1.3.0_3ce36fc7eb736b790463e2607d228eb638420014.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.test/exposed-instrumentation-api-publish/0.5/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="905f3e63973d47fedf2d945fa31d8c0f0c98816e">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/com.android.support.test-exposed-instrumentation-api-publish-0.5_fec31b9e32edb1890539fefa780f9729e2554f01.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4785a3c21320980282f9f33d0d1264a69040538f/hamcrest-library-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="4785a3c21320980282f9f33d0d1264a69040538f">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/hamcrest-library-1.3_fdaa8337f35195375bbdf4241e8f0a5edcc7d9a8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/internal_impl-23.3.0_1a204d7cd574b63dfb908c96bca0f84b57ae4614.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.3.0_54fb8740138f2f489255db7ba7f8a1e02291b327.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/logging-interceptor/3.0.1/1d232df84491c0453e077002509911301109409d/logging-interceptor-3.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="1d232df84491c0453e077002509911301109409d">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/logging-interceptor-3.0.1_a405e1eec2867f23c1ba419d109b5c602d5684fa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-idling-resource/2.2.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="a890ee8445927649d9ed50f625a315d8758688be">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/com.android.support.test.espresso-espresso-idling-resource-2.2.2_95763d036b84d15a1bbc715d07db29fe80022ed2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/junit-4.12_009f6a367901bfd4902f8f05c1b40f361cdf7496.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/io.reactivex/rxandroid/1.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="d4c4b83de2f6412072d2a29b1b7a5b03edaad5ff">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/io.reactivex-rxandroid-1.1.0_6c4f3e4cf094c9f6004c37d419d0bd8659f6b572.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.test/exposed-instrumentation-api-publish/0.5/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="905f3e63973d47fedf2d945fa31d8c0f0c98816e">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/com.android.support.test-exposed-instrumentation-api-publish-0.5_fec31b9e32edb1890539fefa780f9729e2554f01.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/io.reactivex/rxandroid/1.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="d4c4b83de2f6412072d2a29b1b7a5b03edaad5ff">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/io.reactivex-rxandroid-1.1.0_6c4f3e4cf094c9f6004c37d419d0bd8659f6b572.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-idling-resource/2.2.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="a890ee8445927649d9ed50f625a315d8758688be">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/com.android.support.test.espresso-espresso-idling-resource-2.2.2_95763d036b84d15a1bbc715d07db29fe80022ed2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4785a3c21320980282f9f33d0d1264a69040538f/hamcrest-library-1.3.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="4785a3c21320980282f9f33d0d1264a69040538f">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/hamcrest-library-1.3_fdaa8337f35195375bbdf4241e8f0a5edcc7d9a8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/adapter-rxjava/2.0.1/cabf146d220dcd70a2972166cd1bfae200b97eff/adapter-rxjava-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="cabf146d220dcd70a2972166cd1bfae200b97eff">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/adapter-rxjava-2.0.1_d9127f748a81800d131decc783f4655ad2c83559.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/PushService/pushservicelib/unspecified/jars/libs/MiPush_SDK_Client_2_2_21.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="22801a5771670a57a3f79c840e842161e8fd9dc1">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/MiPush_SDK_Client_2_2_21_dcda85427be88086beffb3d532a9e5288fb3b1cf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="479c1e06db31c432330183f5cae684163f186146">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/javax.annotation-api-1.2_4a83f4ec2ee19729db9ff17d17f88631018fd19f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.0.1/27293c440d2085cde1d859528aff6e7d3b6ae40/retrofit-2.0.1.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="027293c440d2085cde1d859528aff6e7d3b6ae40">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/retrofit-2.0.1_933742cd2ccb7b860a1dfafd2e02d473698b15fa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.test/rules/0.5/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="7e11799d8a26bfa5d48acafe012ee5545b9bf468">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/com.android.support.test-rules-0.5_0356cb698d1f4570d9f6b7065dc042aaca12e199.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/okhttp-3.2.0_715f28ac655e8916b9eba844dd1d908e96497761.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.1.1/67ff45d9ae02e583d0f9b3432a5ebbe05c30c966/javawriter-2.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="67ff45d9ae02e583d0f9b3432a5ebbe05c30c966">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/javawriter-2.1.1_011828f5eebd127572c08386d6c2434cf48d0b3d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.0.1/27293c440d2085cde1d859528aff6e7d3b6ae40/retrofit-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="027293c440d2085cde1d859528aff6e7d3b6ae40">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/retrofit-2.0.1_933742cd2ccb7b860a1dfafd2e02d473698b15fa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.1.1/67ff45d9ae02e583d0f9b3432a5ebbe05c30c966/javawriter-2.1.1.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="67ff45d9ae02e583d0f9b3432a5ebbe05c30c966">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/javawriter-2.1.1_011828f5eebd127572c08386d6c2434cf48d0b3d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.test/rules/0.5/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="7e11799d8a26bfa5d48acafe012ee5545b9bf468">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/com.android.support.test-rules-0.5_0356cb698d1f4570d9f6b7065dc042aaca12e199.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.3.0_4914dc22cecf2ff61eb453d42c22438a2b16b88b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/PushService/pushservicelib/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="4cb1b31ee216965e325703116caf7557cdf7c0d7">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/PushService-pushservicelib-unspecified_3404c1d8806770c9890be0bb2ef2300d9d33efb2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/dev_tool/adt-bundle-mac-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/support-annotations-23.3.0_6ef4177d069d8434acf669648b56b8b6a9562da5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/okhttp-3.2.0_715f28ac655e8916b9eba844dd1d908e96497761.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/PushService/pushservicelib/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="4cb1b31ee216965e325703116caf7557cdf7c0d7">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/PushService-pushservicelib-unspecified_3404c1d8806770c9890be0bb2ef2300d9d33efb2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/PushService/pushservicelib/unspecified/jars/libs/netty-4.0.23-for-yx.final.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="060e691be3e6008b064417ea8f1f665fda8057e6">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/netty-4.0.23-for-yx.final_bcd7eeb19b98426541826975d95045deb97e0938.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/dev_tool/adt-bundle-mac-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/support-annotations-23.3.0_6ef4177d069d8434acf669648b56b8b6a9562da5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/adapter-rxjava/2.0.1/cabf146d220dcd70a2972166cd1bfae200b97eff/adapter-rxjava-2.0.1.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="cabf146d220dcd70a2972166cd1bfae200b97eff">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/adapter-rxjava-2.0.1_d9127f748a81800d131decc783f4655ad2c83559.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/PushService/pushservicelib/unspecified/jars/libs/netty-4.0.23-for-yx.final.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="060e691be3e6008b064417ea8f1f665fda8057e6">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/netty-4.0.23-for-yx.final_bcd7eeb19b98426541826975d95045deb97e0938.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/PushService/pushservicelib/unspecified/jars/libs/MiPush_SDK_Client_2_2_21.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="22801a5771670a57a3f79c840e842161e8fd9dc1">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/MiPush_SDK_Client_2_2_21_dcda85427be88086beffb3d532a9e5288fb3b1cf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.3.0_9b8b2163fdcb62eb8e3636ef460aa469ed06f428.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/jsr305-2.0.1_cb272e09efe911986d3bf5bf8cb6fb91b6201efb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/okio-1.6.0_848e49f2588a8f3b4c23949e8432078f056356e3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/com.android.support-support-vector-drawable-23.3.0_4914dc22cecf2ff61eb453d42c22438a2b16b88b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.1/b9d63507329a7178e026fc334f87587ee5070ac5/gson-2.6.1.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="b9d63507329a7178e026fc334f87587ee5070ac5">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/gson-2.6.1_f78c3334a04d8f01259f705fd3a4c513739d791e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.test/runner/0.5/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="796f9229948e907471c5595fbe94655ccf03ff73">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/com.android.support.test-runner-0.5_4d7f12c9b1042f253b1edb0b1a41314a4a124c5d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/PushService/pushservicelib/unspecified/jars/libs/nim-sdk-2.1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="95f91ea8c7156b80ad552d2960e1a0195885c14e">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/nim-sdk-2.1.2_a8b630cce1b006db4418327815f0343c4a727e7c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/com.android.support-animated-vector-drawable-23.3.0_f6aea31d29e9bbc62fe00794e7acb9a0054abe00.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/PushService/pushservicelib/unspecified/jars/libs/nim-sdk-2.1.2.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="95f91ea8c7156b80ad552d2960e1a0195885c14e">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/nim-sdk-2.1.2_a8b630cce1b006db4418327815f0343c4a727e7c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.3.0_f6aea31d29e9bbc62fe00794e7acb9a0054abe00.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/javax.inject-1_ba0998603710581ae9a91abccd0c83491e163386.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.1/b9d63507329a7178e026fc334f87587ee5070ac5/gson-2.6.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="b9d63507329a7178e026fc334f87587ee5070ac5">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/gson-2.6.1_f78c3334a04d8f01259f705fd3a4c513739d791e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/javax.inject-1_ba0998603710581ae9a91abccd0c83491e163386.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-integration/1.3/5de0c73fef18917cd85d0ab70bb23818685e4dfd/hamcrest-integration-1.3.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="5de0c73fef18917cd85d0ab70bb23818685e4dfd">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/hamcrest-integration-1.3_05d14c8f318cfb5af2d2f7a87d0338a15c4990b1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="479c1e06db31c432330183f5cae684163f186146">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/javax.annotation-api-1.2_4a83f4ec2ee19729db9ff17d17f88631018fd19f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/com.android.support-support-v4-23.3.0_9b8b2163fdcb62eb8e3636ef460aa469ed06f428.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.test/runner/0.5/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="796f9229948e907471c5595fbe94655ccf03ff73">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/com.android.support.test-runner-0.5_4d7f12c9b1042f253b1edb0b1a41314a4a124c5d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/jsr305-2.0.1_cb272e09efe911986d3bf5bf8cb6fb91b6201efb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-integration/1.3/5de0c73fef18917cd85d0ab70bb23818685e4dfd/hamcrest-integration-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="5de0c73fef18917cd85d0ab70bb23818685e4dfd">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/hamcrest-integration-1.3_05d14c8f318cfb5af2d2f7a87d0338a15c4990b1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/junit-4.12_009f6a367901bfd4902f8f05c1b40f361cdf7496.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.0.1/2780d858273ce1bb90f6b12e1ef0d40f7741fca/converter-gson-2.0.1.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="02780d858273ce1bb90f6b12e1ef0d40f7741fca">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/converter-gson-2.0.1_fd928f35ef48caabadc1e5459e66099ea608e889.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/PushService/pushservicelib/unspecified/jars/libs/HwPush_SDK_V2705.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="82f8e09142561e5dede71b4705094214e4c640d1">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/HwPush_SDK_V2705_69de24cb2a3bead502e293cc56c3badc5aeaaf10.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-core/2.2.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="d115b0e9e1501135fe91254ba884fcbd83d374c0">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/com.android.support.test.espresso-espresso-core-2.2.2_5d80c95b4bae854db6ceabe2750dab15b4979824.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/hamcrest-core-1.3_4f3a7f230dcb52cec61db3482842527f78dd2276.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/butterknife-7.0.1_975341a2ba5a34a9c881f10f5e4e6575e0298b21.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/PushService/pushservicelib/unspecified/jars/libs/cosinesdk.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="95cf3c8edf23ebe3d7e109e8f854be37911eb3bc">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/cosinesdk_0d864393625b712e4fe0036ca132503f28a4466f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/internal_impl-23.3.0_1a204d7cd574b63dfb908c96bca0f84b57ae4614.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/PushService/pushservicelib/unspecified/jars/libs/HwPush_SDK_V2705.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="82f8e09142561e5dede71b4705094214e4c640d1">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/HwPush_SDK_V2705_69de24cb2a3bead502e293cc56c3badc5aeaaf10.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.0.1/2780d858273ce1bb90f6b12e1ef0d40f7741fca/converter-gson-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="02780d858273ce1bb90f6b12e1ef0d40f7741fca">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/converter-gson-2.0.1_fd928f35ef48caabadc1e5459e66099ea608e889.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/hamcrest-core-1.3_4f3a7f230dcb52cec61db3482842527f78dd2276.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/butterknife-7.0.1_975341a2ba5a34a9c881f10f5e4e6575e0298b21.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/com.android.support-appcompat-v7-23.3.0_54fb8740138f2f489255db7ba7f8a1e02291b327.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-core/2.2.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="d115b0e9e1501135fe91254ba884fcbd83d374c0">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/release/com.android.support.test.espresso-espresso-core-2.2.2_5d80c95b4bae854db6ceabe2750dab15b4979824.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/GitHub/PushService/app/build/intermediates/exploded-aar/PushService/pushservicelib/unspecified/jars/libs/cosinesdk.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="95cf3c8edf23ebe3d7e109e8f854be37911eb3bc">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/cosinesdk_0d864393625b712e4fe0036ca132503f28a4466f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/panliuting/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="/Users/panliuting/GitHub/PushService/app/build/intermediates/pre-dexed/debug/okio-1.6.0_848e49f2588a8f3b4c23949e8432078f056356e3.jar" />
     </item>
 
 </items>

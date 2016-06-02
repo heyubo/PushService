@@ -10,7 +10,6 @@ import com.huawei.android.pushagent.api.PushEventReceiver;
 
 /**
  * @author zhuj
- * @time 2016/4/28 11:11
  * 华为推送接收广播
  */
 public class HuaweiPushMessageReceiver extends PushEventReceiver {

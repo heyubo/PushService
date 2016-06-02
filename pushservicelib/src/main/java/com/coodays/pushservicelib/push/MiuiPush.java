@@ -11,7 +11,6 @@ import com.xiaomi.mipush.sdk.MiPushClient;
 
 /**
  * @author zhuj
- * @time 2016/4/21 16:20
  * 小米推送
  */
 class MiuiPush extends BasePush{
