@@ -2,15 +2,15 @@ package com.coodays.pushservicelib.push;
 
 import android.content.Context;
 import android.support.v4.util.ArrayMap;
-import com.coodays.pushservicelib.bean.NetResult;
-import com.coodays.pushservicelib.bean.NeteaseRegisterBean;
-import com.coodays.pushservicelib.components.modules.AppModule;
-import com.coodays.pushservicelib.network.IHttpApiService;
+import com.coodays.pushservicelib.bean.CdNetResult;
+import com.coodays.pushservicelib.bean.CdNeteaseRegisterBean;
+import com.coodays.pushservicelib.components.modules.CdAppModule;
+import com.coodays.pushservicelib.network.CdIHttpApiService;
 import com.coodays.pushservicelib.push.netease.CheckSumBuilder;
-import com.coodays.pushservicelib.utils.JsonUtils;
-import com.coodays.pushservicelib.utils.LogUtils;
-import com.coodays.pushservicelib.utils.SharedPreferencesUtils;
-import com.coodays.pushservicelib.utils.Tools;
+import com.coodays.pushservicelib.utils.CdJsonUtils;
+import com.coodays.pushservicelib.utils.CdLogUtils;
+import com.coodays.pushservicelib.utils.CdSharedPreferencesUtils;
+import com.coodays.pushservicelib.utils.CdTools;
 import com.netease.nimlib.sdk.AbortableFuture;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
@@ -62,29 +62,29 @@ class NeteasePush extends BasePush {
    */
   @Override public void login( String appUserId, String updateTokenUrl ) {
     if (appUserId == null || appUserId.equals("")) {
-      LogUtils.e(TAG, " push login account is empty " + appUserId);
+      CdLogUtils.e(TAG, " push login account is empty " + appUserId);
       return;
     }
     LoginInfo info = loginInfo();
     if( info != null && info.getAccount().equals(appUserId)) {//云信对已经登入成功的账号 有自动登入,保活机制
-      LogUtils.v(TAG, " push loginInfo !=null , don't need login " + appUserId + " "+getStatus());
+      CdLogUtils.v(TAG, " push loginInfo !=null , don't need login " + appUserId + " "+getStatus());
       return;
     }
-    SharedPreferencesUtils.put(mContext, SharedPreferencesUtils.KEY_TOKEN_UPLOAD_URL , updateTokenUrl);
+    CdSharedPreferencesUtils.put(mContext, CdSharedPreferencesUtils.KEY_TOKEN_UPLOAD_URL , updateTokenUrl);
     //下面是第一次登入
     info = new LoginInfo(appUserId, DEFAULT_PASSWORD); // config...
-    LogUtils.d(TAG, " netease push login() " + appUserId + " current status:" + getStatus());
+    CdLogUtils.d(TAG, " netease push login() " + appUserId + " current status:" + getStatus());
     this.mAccout = appUserId;
     if (!isLogin()) {
       //针对 正在连接中的情况，先退出再登入
       if (getStatus().equals(StatusCode.LOGINING.toString()) || getStatus().equals(StatusCode.CONNECTING.toString())) {
         //NIMClient.getService(AuthService.class).logout();
-        LogUtils.e(TAG, " push login isloinging " + appUserId);
+        CdLogUtils.e(TAG, " push login isloinging " + appUserId);
       } else {
         loginRequest = NIMClient.getService(AuthService.class).login(info);
         loginRequest.setCallback(callback);
         NIMClient.toggleNotification(true);
-        LogUtils.d(TAG, " push login dologin " + appUserId);
+        CdLogUtils.d(TAG, " push login dologin " + appUserId);
       }
     }
     else {
@@ -117,7 +117,7 @@ class NeteasePush extends BasePush {
   }
 
   public void addMessageCallback() {
-    if(Tools.isMainProcess(mContext)) {
+    if(CdTools.isMainProcess(mContext)) {
       LoginInfo loginInfo = loginInfo();
       if(loginInfo!=null) {
         //这句话只能添加到主线程里
@@ -125,7 +125,7 @@ class NeteasePush extends BasePush {
         NIMClient.getService(AuthServiceObserver.class).observeOnlineStatus(
             new Observer<StatusCode> () {
               public void onEvent(StatusCode status) {
-                LogUtils.v(TAG, "Netease push User status changed to: " + status);
+                CdLogUtils.v(TAG, "Netease push User status changed to: " + status);
                 parseMessageDebug("云信登入状态:"+status.toString());
               }
             }, true);
@@ -140,7 +140,7 @@ class NeteasePush extends BasePush {
 
   // 如果已经存在用户登录信息，返回LoginInfo，否则返回null即可
   private LoginInfo loginInfo() {
-    String accout = (String) SharedPreferencesUtils.get(mContext, SharedPreferencesUtils.KEY_TOKEN, "");
+    String accout = (String) CdSharedPreferencesUtils.get(mContext, CdSharedPreferencesUtils.KEY_TOKEN, "");
     if (accout != null && !accout.equals("")) {
       return new LoginInfo(accout, DEFAULT_PASSWORD);
     }
@@ -154,7 +154,7 @@ class NeteasePush extends BasePush {
    */
   private void register(final String account, final String password) {
     if (account == null || account.equals("")) {
-      LogUtils.e(TAG, "push register fail , account is empty " + account);
+      CdLogUtils.e(TAG, "push register fail , account is empty " + account);
       return;
     }
     //String appKey = "aca00f3be88dfe5de5d00fda44fc0113";
@@ -163,15 +163,15 @@ class NeteasePush extends BasePush {
     String curTime = String.valueOf((new Date()).getTime() / 1000L);
     String checkSum = CheckSumBuilder.getCheckSum(appSecret, nonce, curTime);//参考 计算CheckSum的java代码
 
-    final IHttpApiService httpApiService = AppModule.getInstantce(mContext).provideAuthenticationService();
-    Observable<NeteaseRegisterBean> observable = httpApiService.neteaseRegister(curTime,  checkSum, account, password);
+    final CdIHttpApiService httpApiService = CdAppModule.getInstantce(mContext).provideAuthenticationService();
+    Observable<CdNeteaseRegisterBean> observable = httpApiService.neteaseRegister(curTime,  checkSum, account, password);
     observable.subscribeOn(Schedulers.io())
         .observeOn(Schedulers.io())
         .unsubscribeOn(AndroidSchedulers.mainThread())
-        .flatMap(new Func1<NeteaseRegisterBean, Observable<NetResult>>() {
-          @Override public Observable<NetResult> call(NeteaseRegisterBean s) {
+        .flatMap(new Func1<CdNeteaseRegisterBean, Observable<CdNetResult>>() {
+          @Override public Observable<CdNetResult> call(CdNeteaseRegisterBean s) {
             parseMessageDebug("云信注册:"+s.getCode());
-            String updateTokenUrl = (String) SharedPreferencesUtils.get(mContext, SharedPreferencesUtils.KEY_TOKEN_UPLOAD_URL, "");
+            String updateTokenUrl = (String) CdSharedPreferencesUtils.get(mContext, CdSharedPreferencesUtils.KEY_TOKEN_UPLOAD_URL, "");
             if(s.getCode()==200) {
               login(account, updateTokenUrl);
               //注册成功， 上传token到服务器, token就用的 云信id 即app_user_id
@@ -179,7 +179,7 @@ class NeteasePush extends BasePush {
               data.put("app_user_id", account);
               data.put("token", account);
               data.put("phone_brand", ""+PushManager.PHONE_TYPE_DEFAULT);
-              String params = JsonUtils.arrayMapToJson(data);
+              String params = CdJsonUtils.arrayMapToJson(data);
               return httpApiService.setToken(updateTokenUrl,params);
             } else if(s.getCode()== 414) { //此部分应该是处理密码错误，
               if(s.getDesc().equals("already register")) {//414参数错误，中有重复注册"))
@@ -188,24 +188,24 @@ class NeteasePush extends BasePush {
             }
             return null;
           }
-        }).subscribe(new Subscriber<NetResult>() {
+        }).subscribe(new Subscriber<CdNetResult>() {
           @Override public void onCompleted() {
-            LogUtils.v("test", " onCompleted " );
+            CdLogUtils.v("test", " onCompleted " );
           }
 
           @Override public void onError(Throwable e) {
             if(e!=null) {
-              LogUtils.v(TAG, " onError " +e.getMessage());
+              CdLogUtils.v(TAG, " onError " +e.getMessage());
             }
             uploadToken(account, account);
           }
 
-          @Override public void onNext(NetResult s) {
-            LogUtils.d(TAG, "upload push token " + s.getResult().getCode());
+          @Override public void onNext(CdNetResult s) {
+            CdLogUtils.d(TAG, "upload push token " + s.getResult().getCode());
 
             parseMessageDebug("云信上传token:"+s.toString());
             if(s.isNetResultCodeOk()) {
-              SharedPreferencesUtils.put(mContext, account, account);
+              CdSharedPreferencesUtils.put(mContext, account, account);
             } else{
               onError(null);
             }
@@ -219,19 +219,19 @@ class NeteasePush extends BasePush {
   RequestCallback<LoginInfo> callback = new RequestCallback<LoginInfo>() {
     @Override
     public void onSuccess(LoginInfo loginInfo) {
-      LogUtils.d(TAG, "push login Success");
+      CdLogUtils.d(TAG, "push login Success");
       //loginSuccess();
       // 初始化消息提醒
       NIMClient.toggleNotification(true);
-      SharedPreferencesUtils.put(mContext, SharedPreferencesUtils.KEY_TOKEN, loginInfo.getAccount());
+      CdSharedPreferencesUtils.put(mContext, CdSharedPreferencesUtils.KEY_TOKEN, loginInfo.getAccount());
       init();
     }
 
     @Override
     public void onFailed(int i) {
       //如果达到最大测试免费账号100个，也会返回302 ，状态是密码错误, 没注册也是302
-      LogUtils.d(TAG, "push login fail, errorCode: " + i);
-      String updateTokenUrl = (String) SharedPreferencesUtils.get(mContext, SharedPreferencesUtils.KEY_TOKEN_UPLOAD_URL, "");
+      CdLogUtils.d(TAG, "push login fail, errorCode: " + i);
+      String updateTokenUrl = (String) CdSharedPreferencesUtils.get(mContext, CdSharedPreferencesUtils.KEY_TOKEN_UPLOAD_URL, "");
       //注册账号
       if(i==302 || i == 404) {//302 用户名或密码错误, 404对象不存在
         register(mAccout, DEFAULT_PASSWORD);
@@ -245,7 +245,7 @@ class NeteasePush extends BasePush {
 
     @Override
     public void onException(Throwable throwable) {
-      LogUtils.d(TAG, " login exception " + throwable.getMessage());
+      CdLogUtils.d(TAG, " login exception " + throwable.getMessage());
     }
     // 可以在此保存LoginInfo到本地，下次启动APP做自动登录用
   };
@@ -276,7 +276,7 @@ class NeteasePush extends BasePush {
       }
     }
     mLastMessage = message;
-    LogUtils.v(TAG, "接收消息receiver: " + message.getFromAccount() + message.getContent() + " " + message.getPushContent() + " " + message.getPushPayload());
+    CdLogUtils.v(TAG, "接收消息receiver: " + message.getFromAccount() + message.getContent() + " " + message.getPushContent() + " " + message.getPushPayload());
     if (message.getFromAccount().equals("qqqqq2")) {//后台的推送账号
       String pushContet = message.getPushContent();
       if (pushContet == null || pushContet.equals("")) {
@@ -284,7 +284,7 @@ class NeteasePush extends BasePush {
         //这里针对大于150字节的内容，就用pushPayload 来做消息推送体， 最大字节2k
         //这里还有问题 ，map转json  [] {}等不完全
         //pushContet = Utils.simpleMapToJsonStr(message.getPushPayload());
-        pushContet = JsonUtils.hashMapToJson((HashMap) message.getPushPayload());
+        pushContet = CdJsonUtils.hashMapToJson((HashMap) message.getPushPayload());
       }
       parseMessage(pushContet);
     }

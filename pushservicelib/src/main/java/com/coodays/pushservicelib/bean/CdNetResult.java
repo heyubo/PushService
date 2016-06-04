@@ -6,7 +6,7 @@ import lombok.Data;
  * 通用接口返回数据
  * Created by panliuting on 16/3/16.
  */
-@Data public class NetResult {
+@Data public class CdNetResult {
 
   /**
    * code : 服务器返回码
@@ -19,7 +19,7 @@ import lombok.Data;
   private String tag = "";
 
   public boolean isNetResultCodeOk() {
-    return getResult().getCode().equals(NetResult.NET_RESULT_CODE_OK);
+    return getResult().getCode().equals(CdNetResult.NET_RESULT_CODE_OK);
   }
 
   @Data public static class ResultEntity {

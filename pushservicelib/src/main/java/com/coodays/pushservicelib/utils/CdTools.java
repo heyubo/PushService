@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
  * 项目中用到的辅助方法
  * Created by Administrator on 2015/9/29.
  */
-public class Tools {
+public class CdTools {
   /**
    * 手机号码是否有效
    */
@@ -329,14 +329,14 @@ public class Tools {
     ConnectivityManager connectivity =
         (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
     if (connectivity == null) {
-      LogUtils.i("NetWorkState", "Unavailabel");
+      CdLogUtils.i("NetWorkState", "Unavailabel");
       return false;
     } else {
       NetworkInfo[] info = connectivity.getAllNetworkInfo();
       if (info != null) {
         for (int i = 0; i < info.length; i++) {
           if (info[i].getState() == NetworkInfo.State.CONNECTED) {
-            LogUtils.i("NetWorkState", "Availabel");
+            CdLogUtils.i("NetWorkState", "Availabel");
             return true;
           }
         }
@@ -479,7 +479,7 @@ public class Tools {
     List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
     if (tasks != null && !tasks.isEmpty()) {
       ComponentName topActivity = tasks.get(0).topActivity;
-      //LogUtils.v("tools", " the app is "+topActivity.getPackageName() );
+      //CdLogUtils.v("tools", " the app is "+topActivity.getPackageName() );
       if (topActivity.getPackageName().equals(context.getPackageName())) {
         return true;
       }

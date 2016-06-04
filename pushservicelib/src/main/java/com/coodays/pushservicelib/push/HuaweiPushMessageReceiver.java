@@ -4,8 +4,8 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import com.coodays.pushservicelib.utils.LogUtils;
-import com.coodays.pushservicelib.utils.SharedPreferencesUtils;
+import com.coodays.pushservicelib.utils.CdLogUtils;
+import com.coodays.pushservicelib.utils.CdSharedPreferencesUtils;
 import com.huawei.android.pushagent.api.PushEventReceiver;
 
 /**
@@ -20,9 +20,9 @@ public class HuaweiPushMessageReceiver extends PushEventReceiver {
   public void onToken(Context context, String token, Bundle extras){
     String belongId = extras.getString("belongId");
     String content = "获取token和belongId成功，token = " + token + ",belongId = " + belongId;
-    LogUtils.d(TAG, " getTOken："+content);
-    String app_user_id = (String) SharedPreferencesUtils.get(context, SharedPreferencesUtils.KEY_APP_USER_ID, "");
-    SharedPreferencesUtils.put(context, SharedPreferencesUtils.KEY_TOKEN, token);
+    CdLogUtils.d(TAG, " getTOken："+content);
+    String app_user_id = (String) CdSharedPreferencesUtils.get(context, CdSharedPreferencesUtils.KEY_APP_USER_ID, "");
+    CdSharedPreferencesUtils.put(context, CdSharedPreferencesUtils.KEY_TOKEN, token);
     PushManager.getInstance(context).uploadToken(app_user_id,token);
     //showPushMessage(PustDemoActivity.RECEIVE_TOKEN_MSG, content);
   }
@@ -32,7 +32,7 @@ public class HuaweiPushMessageReceiver extends PushEventReceiver {
   public boolean onPushMsg(Context context, byte[] msg, Bundle bundle) {
     try {
       String content =new String(msg, "UTF-8");
-      LogUtils.d(TAG, "接收到消息"+content);
+      CdLogUtils.d(TAG, "接收到消息"+content);
       PushManager.getInstance(context).parseMessage(content);
     } catch (Exception e) {
       e.printStackTrace();
@@ -60,7 +60,7 @@ public class HuaweiPushMessageReceiver extends PushEventReceiver {
       } else if(TYPE_TAG == reportType) {
         message = "TAG report result :";
       }
-      LogUtils.d(TAG, message + isSuccess);
+      CdLogUtils.d(TAG, message + isSuccess);
     }
     super.onEvent(context, event, extras);
   }

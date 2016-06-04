@@ -1,7 +1,7 @@
 package com.coodays.pushservicelib.network;
 
-import com.coodays.pushservicelib.bean.NetResult;
-import com.coodays.pushservicelib.bean.NeteaseRegisterBean;
+import com.coodays.pushservicelib.bean.CdNetResult;
+import com.coodays.pushservicelib.bean.CdNeteaseRegisterBean;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
@@ -14,14 +14,14 @@ import rx.Observable;
  * 网络API块口
  * Created by panliuting on 16/3/16.
  */
-public interface IHttpApiService {
+public interface CdIHttpApiService {
 
   /**
    * 同步TOKEN接口
    *
    * @param content 提交的内容
    */
-  @FormUrlEncoded @POST("haha/{url}") Observable<NetResult> setToken(
+  @FormUrlEncoded @POST("haha/{url}") Observable<CdNetResult> setToken(
       @Path("url") String url,
       @Field("content") String content);
 
@@ -36,7 +36,7 @@ public interface IHttpApiService {
       "Content-Type:application/x-www-form-urlencoded;charset=utf-8"
   })
   @FormUrlEncoded @POST("https://api.netease.im/nimserver/user/create.action")
-  Observable<NeteaseRegisterBean> neteaseRegister(@Header("CurTime") String curTime,
+  Observable<CdNeteaseRegisterBean> neteaseRegister(@Header("CurTime") String curTime,
       @Header("CheckSum") String checkSum, @Field("accid") String accid,
       @Field("token") String token);
 

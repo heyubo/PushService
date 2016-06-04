@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-public class SharedPreferencesUtils {
+public class CdSharedPreferencesUtils {
   public static final String KEY_APP_USER_ID = "cd51Repair_appUserId";//app用户ID
   //public static final String KEY_TOKEN_UPLOAD ="cd51Repair_tokenUpload";//s上次上传的token
   public static final String KEY_TOKEN_UPLOAD_URL ="cd51Repair_tokenUpload";//上传地址

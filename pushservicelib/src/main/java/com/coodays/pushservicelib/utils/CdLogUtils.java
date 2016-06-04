@@ -6,10 +6,10 @@ import android.util.Log;
  * Log统一管理类
  * @author zxh
  */
-public class LogUtils
+public class CdLogUtils
 {
 
-	private LogUtils()
+	private CdLogUtils()
 	{
 		/* cannot be instantiated */
 		throw new UnsupportedOperationException("cannot be instantiated");

@@ -13,11 +13,11 @@ import java.util.Set;
 /**
  * 系统属性
  */
-public class BuildProperties {
+public class CdBuildProperties {
 
     private final Properties properties;
 
-    private BuildProperties() throws IOException {
+    private CdBuildProperties() throws IOException {
         properties = new Properties();
         properties.load(new FileInputStream(new File(Environment.getRootDirectory(), "build.prop")));
     }
@@ -62,8 +62,8 @@ public class BuildProperties {
         return properties.values();
     }
 
-    public static BuildProperties newInstance() throws IOException {
-        return new BuildProperties();
+    public static CdBuildProperties newInstance() throws IOException {
+        return new CdBuildProperties();
     }
 
 }

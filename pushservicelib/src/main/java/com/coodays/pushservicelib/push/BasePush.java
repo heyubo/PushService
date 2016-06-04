@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;
 import com.coodays.pushservicelib.BuildConfig;
-import com.coodays.pushservicelib.bean.NetResult;
-import com.coodays.pushservicelib.network.CustomException;
-import com.coodays.pushservicelib.utils.JsonUtils;
-import com.coodays.pushservicelib.utils.LogUtils;
-import com.coodays.pushservicelib.utils.SharedPreferencesUtils;
-import com.coodays.pushservicelib.utils.Tools;
+import com.coodays.pushservicelib.bean.CdNetResult;
+import com.coodays.pushservicelib.network.CdCustomException;
+import com.coodays.pushservicelib.utils.CdJsonUtils;
+import com.coodays.pushservicelib.utils.CdLogUtils;
+import com.coodays.pushservicelib.utils.CdSharedPreferencesUtils;
+import com.coodays.pushservicelib.utils.CdTools;
 import com.google.gson.Gson;
 import java.io.IOException;
 import okhttp3.FormBody;
@@ -83,22 +83,23 @@ public abstract class BasePush {
    * @param phone_brand 手机类型 1小米 2华为 3其他
    */
   void startUploadToken( final String app_user_id, final String token, final String phone_brand) {
-    String uploadToken = (String) SharedPreferencesUtils.get(mContext, app_user_id, "");
-    final String uploadTokenUrl = (String) SharedPreferencesUtils.get(mContext, SharedPreferencesUtils.KEY_TOKEN_UPLOAD_URL, "");
-    parseMessageDebug("开始上传 " + app_user_id + " token: " + token + " phone_brand: " + phone_brand  + " url:"+uploadTokenUrl);
-    LogUtils.d(TAG,"startUploadToken， 并开始上传 " + app_user_id + " token: " + token + " phone_brand: " + phone_brand + " url:"+uploadTokenUrl);
+    String uploadToken = (String) CdSharedPreferencesUtils.get(mContext, app_user_id, "");
+    final String uploadTokenUrl = (String) CdSharedPreferencesUtils.get(mContext, CdSharedPreferencesUtils.KEY_TOKEN_UPLOAD_URL, "");
     if (TextUtils.isEmpty(app_user_id) || TextUtils.isEmpty(uploadTokenUrl)) {
+      CdLogUtils.w(TAG,"startUploadToken  fail because  app_user_id:" + app_user_id + " token: " + token + " phone_brand: " + phone_brand + " url:"+uploadTokenUrl);
       return ;
     }
+    parseMessageDebug("开始上传 " + app_user_id + " token: " + token + " phone_brand: " + phone_brand  + " url:"+uploadTokenUrl);
+    CdLogUtils.d(TAG,"startUploadToken， 并开始上传 " + app_user_id + " token: " + token + " phone_brand: " + phone_brand + " url:"+uploadTokenUrl);
     if (!uploadToken.equals(token)) {//同一个token表示已经上传过了
-      if (Tools.isNetworkAvailable(mContext)) {
-        Observable<NetResult> observable = Observable.create(new Observable.OnSubscribe<NetResult>() {
-          @Override public void call(Subscriber<? super NetResult> subscriber) {
+      if (CdTools.isNetworkAvailable(mContext)) {
+        Observable<CdNetResult> observable = Observable.create(new Observable.OnSubscribe<CdNetResult>() {
+          @Override public void call(Subscriber<? super CdNetResult> subscriber) {
             ArrayMap<String, String> data = new ArrayMap<>();
             data.put("app_user_id", app_user_id);
             data.put("token", token);
             data.put("phone_brand", phone_brand);
-            String params = JsonUtils.arrayMapToJson(data);
+            String params = CdJsonUtils.arrayMapToJson(data);
 
             //retrofit2 只能动态替换固定url中某一段值， 或固定写死url
             //无法完全 动态替换url ，所以使用 okhttp的形式
@@ -114,13 +115,13 @@ public abstract class BasePush {
               Response response = okHttpClient.newCall(request).execute();
               Gson gson = new Gson();
               String str = response.body().string();
-              LogUtils.d(TAG, " 返回：" + str);
+              CdLogUtils.d(TAG, " 返回：" + str);
               if (response.isSuccessful()) {
-                NetResult netResult = gson.fromJson(str, NetResult.class);
-                if (netResult.isNetResultCodeOk()) {
-                  subscriber.onNext(netResult);
+                CdNetResult cdNetResult = gson.fromJson(str, CdNetResult.class);
+                if (cdNetResult.isNetResultCodeOk()) {
+                  subscriber.onNext(cdNetResult);
                 } else {
-                  subscriber.onError(new CustomException(netResult.getResult()));
+                  subscriber.onError(new CdCustomException(cdNetResult.getResult()));
                 }
               } else {
                 subscriber.onError(new IOException("Unexpected code " + response));
@@ -134,20 +135,20 @@ public abstract class BasePush {
         observable.subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .unsubscribeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Subscriber<NetResult>() {
+            .subscribe(new Subscriber<CdNetResult>() {
               @Override public void onCompleted() {
 
               }
 
               @Override public void onError(Throwable e) {
-                LogUtils.d(TAG, "error" + e.getMessage());
+                CdLogUtils.d(TAG, "error " + e.getMessage());
               }
 
-              @Override public void onNext(NetResult netResult) {
-                LogUtils.d(TAG, "upload push token " + netResult.getResult().getCode());
-                if(netResult.isNetResultCodeOk()) {
-                  parseMessageDebug("上传token结果："+netResult.toString());
-                  SharedPreferencesUtils.put(mContext, app_user_id, token);
+              @Override public void onNext(CdNetResult cdNetResult) {
+                CdLogUtils.d(TAG, "upload push token " + cdNetResult.getResult().getCode());
+                if(cdNetResult.isNetResultCodeOk()) {
+                  parseMessageDebug("上传token结果："+ cdNetResult.toString());
+                  CdSharedPreferencesUtils.put(mContext, app_user_id, token);
                 }
               }
             });
@@ -175,10 +176,10 @@ public abstract class BasePush {
   }
 
   void loginOutClean( ) {
-    String appUserId = (String) SharedPreferencesUtils.get(mContext, SharedPreferencesUtils.KEY_APP_USER_ID, "");
-    SharedPreferencesUtils.put(mContext, appUserId, "");
-    SharedPreferencesUtils.put(mContext, SharedPreferencesUtils.KEY_TOKEN, "");
-    SharedPreferencesUtils.put(mContext, SharedPreferencesUtils.KEY_APP_USER_ID, "");
+    String appUserId = (String) CdSharedPreferencesUtils.get(mContext, CdSharedPreferencesUtils.KEY_APP_USER_ID, "");
+    CdSharedPreferencesUtils.put(mContext, appUserId, "");
+    CdSharedPreferencesUtils.put(mContext, CdSharedPreferencesUtils.KEY_TOKEN, "");
+    CdSharedPreferencesUtils.put(mContext, CdSharedPreferencesUtils.KEY_APP_USER_ID, "");
   }
 
 }

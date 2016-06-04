@@ -1,8 +1,8 @@
 package com.coodays.pushservicelib.push;
 
 import android.content.Context;
-import com.coodays.pushservicelib.utils.LogUtils;
-import com.coodays.pushservicelib.utils.SharedPreferencesUtils;
+import com.coodays.pushservicelib.utils.CdLogUtils;
+import com.coodays.pushservicelib.utils.CdSharedPreferencesUtils;
 import com.xiaomi.mipush.sdk.ErrorCode;
 import com.xiaomi.mipush.sdk.MiPushClient;
 import com.xiaomi.mipush.sdk.MiPushCommandMessage;
@@ -25,7 +25,7 @@ public class MiuiPushMessageReceiver extends PushMessageReceiver {
     super.onReceivePassThroughMessage(context, miPushMessage);
     try {
       String content = miPushMessage.getContent();
-      LogUtils.v(TAG, "接收到消息："+content);
+      CdLogUtils.v(TAG, "接收到消息："+content);
       PushManager.getInstance(context).parseMessage(content);
     } catch (Exception e) {
       e.printStackTrace();
@@ -61,12 +61,12 @@ public class MiuiPushMessageReceiver extends PushMessageReceiver {
     List<String> arguments = message.getCommandArguments();
     String cmdArg1 = ((arguments != null && arguments.size() > 0) ? arguments.get(0) : null);
     String cmdArg2 = ((arguments != null && arguments.size() > 1) ? arguments.get(1) : null);
-    LogUtils.v(TAG, " miui register " + cmdArg1);
+    CdLogUtils.v(TAG, " miui register " + cmdArg1);
     if (MiPushClient.COMMAND_REGISTER.equals(command)) {
       if (message.getResultCode() == ErrorCode.SUCCESS) {
         mRegId = cmdArg1;
-        String app_user_id = (String) SharedPreferencesUtils.get(context, SharedPreferencesUtils.KEY_APP_USER_ID, "");
-        SharedPreferencesUtils.put(context, SharedPreferencesUtils.KEY_TOKEN, mRegId);
+        String app_user_id = (String) CdSharedPreferencesUtils.get(context, CdSharedPreferencesUtils.KEY_APP_USER_ID, "");
+        CdSharedPreferencesUtils.put(context, CdSharedPreferencesUtils.KEY_TOKEN, mRegId);
         PushManager.getInstance(context).uploadToken(app_user_id, mRegId );
       }
     }

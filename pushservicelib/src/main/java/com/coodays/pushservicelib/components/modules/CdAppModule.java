@@ -8,7 +8,7 @@ package com.coodays.pushservicelib.components.modules;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import com.coodays.pushservicelib.network.IHttpApiService;
+import com.coodays.pushservicelib.network.CdIHttpApiService;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -22,8 +22,8 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AppModule {
-  public static final String DOMAIN_TEST_sit = "http://";//测试服务器http://123.57.253.109/51xiu/
+public class CdAppModule {
+  public static final String DOMAIN_TEST_sit = "http://sit.51xiuj.com/";//测试服务器http://123.57.253.109/51xiu/
   public static final String DOMAIN_TEST_uat = "http://uat.51xiuj.com/";//一期http://www.51xiuj.com:8080/
   public static final String DOMAIN = "http://www.51xiuj.com/";//正式服务器地址
   private static final int DEFAULT_TIMEOUT = 15;
@@ -31,22 +31,22 @@ public class AppModule {
   private Retrofit mRetrofit;
   private OkHttpClient.Builder mHttpClientBuilder;
   private Context mContext;
-  private static volatile AppModule mAppMoudle;
+  private static volatile CdAppModule mAppMoudle;
 
-  private AppModule() {}
+  private CdAppModule() {}
 
-  public static AppModule getInstantce(Context context) {
+  public static CdAppModule getInstantce(Context context) {
     if (mAppMoudle == null) {
-      synchronized (AppModule.class) {
+      synchronized (CdAppModule.class) {
         if (mAppMoudle == null) {
-          mAppMoudle = new AppModule(context);
+          mAppMoudle = new CdAppModule(context);
         }
       }
     }
     return mAppMoudle;
   }
 
-  private AppModule(Context context) {
+  private CdAppModule(Context context) {
     this.mContext = context;
     File httpCacheDirectory = new File(mContext.getCacheDir(),  "responses");
     int cacheSize = 10 * 1024 * 1024; // 10 MiB
@@ -56,8 +56,9 @@ public class AppModule {
     mHttpClientBuilder = new OkHttpClient.Builder();
     mHttpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
     mHttpClientBuilder.addNetworkInterceptor(REWRITE_RESPONSE_INTERCEPTOR)
-        .addInterceptor(OFFLINE_INTERCEPTOR)
-        .cache(cache).build();
+        //.addInterceptor(OFFLINE_INTERCEPTOR)
+        //.cache(cache)
+        .build();
     mRetrofit = new Retrofit.Builder().client(mHttpClientBuilder.build())
         .baseUrl(DOMAIN_TEST_sit)
         .addConverterFactory(GsonConverterFactory.create())
@@ -65,8 +66,8 @@ public class AppModule {
         .build();
   }
 
-  public IHttpApiService provideAuthenticationService() {
-    return mRetrofit.create(IHttpApiService.class);
+  public CdIHttpApiService provideAuthenticationService() {
+    return mRetrofit.create(CdIHttpApiService.class);
   }
 
   Retrofit provideRetrofit() {

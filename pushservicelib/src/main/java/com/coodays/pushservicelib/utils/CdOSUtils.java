@@ -7,14 +7,14 @@ import java.lang.reflect.Method;
 /**
  * 判断系统是不是miui，flyme，emui
  */
-public class OSUtils {
+public class CdOSUtils {
     private static final String KEY_EMUI_VERSION_CODE = "ro.build.version.emui";
     private static final String KEY_MIUI_VERSION_CODE = "ro.miui.ui.version.code";
     private static final String KEY_MIUI_VERSION_NAME = "ro.miui.ui.version.name";
     private static final String KEY_MIUI_INTERNAL_STORAGE = "ro.miui.internal.storage";
     private static boolean isPropertiesExist(String... keys) {
         try {
-            BuildProperties prop = BuildProperties.newInstance();
+            CdBuildProperties prop = CdBuildProperties.newInstance();
             for (String key : keys) {
                 String str = prop.getProperty(key);
                 if (str == null) {

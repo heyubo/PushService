@@ -1,9 +1,9 @@
 package com.coodays.pushservicelib.push;
 
 import android.content.Context;
-import com.coodays.pushservicelib.utils.LogUtils;
-import com.coodays.pushservicelib.utils.OSUtils;
-import com.coodays.pushservicelib.utils.SharedPreferencesUtils;
+import com.coodays.pushservicelib.utils.CdLogUtils;
+import com.coodays.pushservicelib.utils.CdOSUtils;
+import com.coodays.pushservicelib.utils.CdSharedPreferencesUtils;
 
 /**
  * @author zhuj
@@ -29,19 +29,19 @@ public class PushManager {
       synchronized (PushManager.class) {
         if(mBashPush == null) {
           //读取缓存 的 推送类型
-          int phone_broad = (int) SharedPreferencesUtils.get(mContext, "phone_broad", 0);
+          int phone_broad = (int) CdSharedPreferencesUtils.get(mContext, "phone_broad", 0);
           if(phone_broad==0) { //没有缓存的类型， 就根据手机获得推送类型
-            if(OSUtils.isMIUI()) {   //小米系统
+            if(CdOSUtils.isMIUI()) {   //小米系统
               phone_broad = PHONE_TYPE_MIUI;
-              LogUtils.v("pushManager", " is MiuiPush");
-            }else if(OSUtils.isEMUI()) {//华为系统
+              CdLogUtils.v("pushManager", " is MiuiPush");
+            }else if(CdOSUtils.isEMUI()) {//华为系统
               phone_broad = PHONE_TYPE_HUAWEI;
-              LogUtils.v("pushManager", " is HuaweiPush");
+              CdLogUtils.v("pushManager", " is HuaweiPush");
             } else { //其他用 云信推送
               phone_broad = PHONE_TYPE_DEFAULT;
-              LogUtils.v("pushManager", " is NeteasePush");
+              CdLogUtils.v("pushManager", " is NeteasePush");
             }
-            SharedPreferencesUtils.put(mContext, "phone_broad", phone_broad);
+            CdSharedPreferencesUtils.put(mContext, "phone_broad", phone_broad);
           }
           switch(phone_broad) {
             case PHONE_TYPE_MIUI:

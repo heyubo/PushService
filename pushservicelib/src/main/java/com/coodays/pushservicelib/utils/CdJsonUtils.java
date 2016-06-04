@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by panliuting on 16/3/18.
  */
-public class JsonUtils {
+public class CdJsonUtils {
   public static String hashMapToJson(HashMap map) {
     return toJson(map);
   }

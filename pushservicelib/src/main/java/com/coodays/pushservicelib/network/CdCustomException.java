@@ -1,6 +1,6 @@
 package com.coodays.pushservicelib.network;
 
-import com.coodays.pushservicelib.bean.NetResult;
+import com.coodays.pushservicelib.bean.CdNetResult;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,13 +11,13 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class CustomException extends Exception {
+public class CdCustomException extends Exception {
 
-  private NetResult.ResultEntity resultEntity;//包括 code 和 info
+  private CdNetResult.ResultEntity resultEntity;//包括 code 和 info
 
-  private CustomException() {}
+  private CdCustomException() {}
 
-  public CustomException(NetResult.ResultEntity resultEntity) {
+  public CdCustomException(CdNetResult.ResultEntity resultEntity) {
     this.resultEntity = resultEntity;
   }
 
