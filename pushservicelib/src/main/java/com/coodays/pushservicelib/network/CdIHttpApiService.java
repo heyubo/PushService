@@ -7,7 +7,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -17,13 +17,11 @@ import rx.Observable;
 public interface CdIHttpApiService {
 
   /**
-   * 同步TOKEN接口
-   *
-   * @param content 提交的内容
+   * 上传消息读取接口
+   * @param url  上传的url
+   * @param content 内容
    */
-  @FormUrlEncoded @POST("haha/{url}") Observable<CdNetResult> setToken(
-      @Path("url") String url,
-      @Field("content") String content);
+  @FormUrlEncoded @POST Observable<CdNetResult> setReadMessage(@Url String url, @Field("content") String content);
 
   /**
    * 云信注册

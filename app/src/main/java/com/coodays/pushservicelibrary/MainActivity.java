@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
   @OnClick({ R.id.btn_login, R.id.btn_loginOut }) public void onClick(View view) {
     switch (view.getId()) {
       case R.id.btn_login:
-        PushManager.getInstance(this).login(mEtAppUserId.getText().toString(), "http://sit.51xiuj.com/v1/token/set");
+        PushManager.getInstance(this).login(mEtAppUserId.getText().toString());
         //"http://si.51xiuj.com/v1/token/set",
         break;
       case R.id.btn_loginOut:

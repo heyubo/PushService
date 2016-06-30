@@ -1,62 +1,91 @@
 package com.coodays.pushservicelib.push;
 
 import android.content.Context;
+import android.content.Intent;
 import com.coodays.pushservicelib.utils.CdLogUtils;
-import com.coodays.pushservicelib.utils.CdOSUtils;
 import com.coodays.pushservicelib.utils.CdSharedPreferencesUtils;
 
 /**
  * @author zhuj
- * 获得推送
+ *         获得推送
  */
 public class PushManager {
-
-  private static volatile BasePush mBashPush;
 
   public final static int PHONE_TYPE_MIUI = 1;//小米
   public final static int PHONE_TYPE_HUAWEI = 2;//华为
   public final static int PHONE_TYPE_DEFAULT = 3;//其他手机
 
+  /**
+   * 接收到消息
+   */
   public final static String ACTION_PUSH_MESSAGE = "com.coodays.pushservicelib.receiver_message";
+  /**
+   * 踢人
+   */
+  public final static String ACTION_PUSH_KICK = "com.coodays.pushservicelib.receiver_kick";
+  /**
+   * 获得token
+   */
+  public final static String ACTION_PUSH_GET_TOKEN = "com.coodays.pushservicelib.get_token";
+
+  private static volatile PushManager mBashPush;
+  private Context mContext;
+
+  private PushManager(Context context){
+    this.mContext = context;
+  }
 
   /**
    * 根据手机型号、获得推送类型的实例
-   * @param mContext
-   * @return  小米推送、华为推送、云信推送
+   *
+   * @return 小米推送、华为推送、云信推送
    */
-  public static BasePush getInstance(Context mContext) {
-    if(mBashPush == null) {
+  public static PushManager getInstance(Context context) {
+    if (mBashPush == null) {
       synchronized (PushManager.class) {
-        if(mBashPush == null) {
-          //读取缓存 的 推送类型
-          int phone_broad = (int) CdSharedPreferencesUtils.get(mContext, "phone_broad", 0);
-          if(phone_broad==0) { //没有缓存的类型， 就根据手机获得推送类型
-            if(CdOSUtils.isMIUI()) {   //小米系统
-              phone_broad = PHONE_TYPE_MIUI;
-              CdLogUtils.v("pushManager", " is MiuiPush");
-            }else if(CdOSUtils.isEMUI()) {//华为系统
-              phone_broad = PHONE_TYPE_HUAWEI;
-              CdLogUtils.v("pushManager", " is HuaweiPush");
-            } else { //其他用 云信推送
-              phone_broad = PHONE_TYPE_DEFAULT;
-              CdLogUtils.v("pushManager", " is NeteasePush");
-            }
-            CdSharedPreferencesUtils.put(mContext, "phone_broad", phone_broad);
-          }
-          switch(phone_broad) {
-            case PHONE_TYPE_MIUI:
-              mBashPush = new MiuiPush(mContext);
-              break;
-            case PHONE_TYPE_HUAWEI:
-              mBashPush = new HuaweiPush(mContext);
-              break;
-            default:
-              mBashPush = new NeteasePush(mContext);
-              break;
-          }
+        if (mBashPush == null) {
+          mBashPush = new PushManager(context);
         }
       }
     }
     return mBashPush;
+  }
+
+  public void login(String app_user_id) {
+    NeteasePush.getInstance(mContext).login(app_user_id);
+    HuaweiPush.getInstance(mContext).login(app_user_id);
+    MiuiPush.getInstance(mContext).login(app_user_id);
+  }
+
+  public void loginOut() {
+    NeteasePush.getInstance(mContext).loginOut();
+    HuaweiPush.getInstance(mContext).loginOut();
+    MiuiPush.getInstance(mContext).loginOut();
+  }
+
+  public void init() {
+    NeteasePush.getInstance(mContext).init();
+    HuaweiPush.getInstance(mContext).init();
+    MiuiPush.getInstance(mContext).init();
+  }
+
+  public String getToken() {
+    return CdSharedPreferencesUtils.getToken(mContext);
+  }
+
+  public static void sendBroadcastToken(Context context) {
+    String token = CdSharedPreferencesUtils.getToken(context);
+    CdLogUtils.d("pushManager", "send token " + token);
+    Intent intent = new Intent(PushManager.ACTION_PUSH_GET_TOKEN);
+    intent.putExtra("token", token);
+    context.sendBroadcast(intent);
+  }
+
+  /**
+   * 设置 回传收到消息 接口
+   * @param readMessageUrl
+   */
+  public void setReadMessageUrl(String readMessageUrl) {
+    CdSharedPreferencesUtils.put(mContext , CdSharedPreferencesUtils.KEY_READ_MESSAGE_URL, readMessageUrl);
   }
 }

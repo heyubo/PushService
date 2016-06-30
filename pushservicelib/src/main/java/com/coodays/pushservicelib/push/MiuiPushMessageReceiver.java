@@ -19,14 +19,18 @@ public class MiuiPushMessageReceiver extends PushMessageReceiver {
   private String mRegId;
 
   private final static String TAG = "miui_push_receiver";
+  private String lastMessageId = "";
 
   //透传消息
   @Override public void onReceivePassThroughMessage(Context context, MiPushMessage miPushMessage) {
     super.onReceivePassThroughMessage(context, miPushMessage);
     try {
       String content = miPushMessage.getContent();
-      CdLogUtils.v(TAG, "接收到消息："+content);
-      PushManager.getInstance(context).parseMessage(content);
+      CdLogUtils.v(TAG, "接收到消息 id："+ miPushMessage.getMessageId() + " " +content);
+      if (!lastMessageId.equals(miPushMessage.getMessageId())) {
+        MiuiPush.getInstance(context).parseMessage(content);
+        lastMessageId = miPushMessage.getMessageId();
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -66,8 +70,10 @@ public class MiuiPushMessageReceiver extends PushMessageReceiver {
       if (message.getResultCode() == ErrorCode.SUCCESS) {
         mRegId = cmdArg1;
         String app_user_id = (String) CdSharedPreferencesUtils.get(context, CdSharedPreferencesUtils.KEY_APP_USER_ID, "");
-        CdSharedPreferencesUtils.put(context, CdSharedPreferencesUtils.KEY_TOKEN, mRegId);
-        PushManager.getInstance(context).uploadToken(app_user_id, mRegId );
+        CdSharedPreferencesUtils.savaToken(context, ""+PushManager.PHONE_TYPE_MIUI, mRegId);
+
+        //广播发送获得token
+        PushManager.sendBroadcastToken(context);
       }
     }
   }

@@ -19,12 +19,9 @@ public class HuaweiPushMessageReceiver extends PushEventReceiver {
   @Override
   public void onToken(Context context, String token, Bundle extras){
     String belongId = extras.getString("belongId");
-    String content = "获取token和belongId成功，token = " + token + ",belongId = " + belongId;
-    CdLogUtils.d(TAG, " getTOken："+content);
-    String app_user_id = (String) CdSharedPreferencesUtils.get(context, CdSharedPreferencesUtils.KEY_APP_USER_ID, "");
-    CdSharedPreferencesUtils.put(context, CdSharedPreferencesUtils.KEY_TOKEN, token);
-    PushManager.getInstance(context).uploadToken(app_user_id,token);
-    //showPushMessage(PustDemoActivity.RECEIVE_TOKEN_MSG, content);
+    CdLogUtils.d(TAG, " getTOken：" + token + ",belongId = " + belongId);
+    CdSharedPreferencesUtils.savaToken(context, ""+PushManager.PHONE_TYPE_HUAWEI, token);
+    PushManager.sendBroadcastToken(context);
   }
 
 
@@ -33,7 +30,7 @@ public class HuaweiPushMessageReceiver extends PushEventReceiver {
     try {
       String content =new String(msg, "UTF-8");
       CdLogUtils.d(TAG, "接收到消息"+content);
-      PushManager.getInstance(context).parseMessage(content);
+      HuaweiPush.getInstance(context).parseMessage(content);
     } catch (Exception e) {
       e.printStackTrace();
     }

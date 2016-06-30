@@ -15,6 +15,19 @@ class HuaweiPush extends BasePush {
     super(mContext);
   }
 
+  private static volatile BasePush mBashPush;
+
+  public static BasePush getInstance(Context context){
+    if (mBashPush==null) {
+      synchronized (HuaweiPush.class) {
+        if(mBashPush==null) {
+          mBashPush = new HuaweiPush(context);
+        }
+      }
+    }
+    return mBashPush;
+  }
+
   @Override public void init() {
     if(CdTools.isMainProcess(mContext)) {
       CdLogUtils.v("huaweiPush", "huawei push init");
@@ -23,15 +36,12 @@ class HuaweiPush extends BasePush {
     }
   }
 
-  @Override public void login(String app_user_id, String uploadTokenUrl) {
-    CdSharedPreferencesUtils.put(mContext, CdSharedPreferencesUtils.KEY_TOKEN_UPLOAD_URL, uploadTokenUrl);
+  @Override public void login(String app_user_id) {
     CdSharedPreferencesUtils.put(mContext, CdSharedPreferencesUtils.KEY_APP_USER_ID, app_user_id);
-    String token = (String) CdSharedPreferencesUtils.get(mContext, CdSharedPreferencesUtils.KEY_TOKEN , "");
+    String token = CdSharedPreferencesUtils.getTokenSingle(mContext, ""+PushManager.PHONE_TYPE_HUAWEI);
     //登入时， 还未获取到token值，
     if (TextUtils.isEmpty(token)) { //请求一次token， 请求成功，会再次触发上传token
       com.huawei.android.pushagent.api.PushManager.requestToken(mContext);
-    } else { //直接上传
-      startUploadToken(app_user_id, token, ""+PushManager.PHONE_TYPE_HUAWEI);
     }
   }
 
@@ -49,7 +59,4 @@ class HuaweiPush extends BasePush {
     return true;
   }
 
-  @Override void uploadToken(String app_user_id, String token) {
-    startUploadToken(app_user_id, token, ""+PushManager.PHONE_TYPE_HUAWEI);
-  }
 }

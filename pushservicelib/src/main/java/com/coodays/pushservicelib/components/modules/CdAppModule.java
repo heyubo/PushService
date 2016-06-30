@@ -6,13 +6,10 @@
 package com.coodays.pushservicelib.components.modules;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import com.coodays.pushservicelib.network.CdIHttpApiService;
-import java.io.File;
+import com.coodays.pushservicelib.utils.CdSharedPreferencesUtils;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -23,10 +20,8 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CdAppModule {
-  public static final String DOMAIN_TEST_sit = "http://sit.51xiuj.com/";//测试服务器http://123.57.253.109/51xiu/
-  public static final String DOMAIN_TEST_uat = "http://uat.51xiuj.com/";//一期http://www.51xiuj.com:8080/
-  public static final String DOMAIN = "http://www.51xiuj.com/";//正式服务器地址
-  private static final int DEFAULT_TIMEOUT = 15;
+
+  private static final int DEFAULT_TIMEOUT = 15;//超时时间 单位秒
 
   private Retrofit mRetrofit;
   private OkHttpClient.Builder mHttpClientBuilder;
@@ -48,19 +43,20 @@ public class CdAppModule {
 
   private CdAppModule(Context context) {
     this.mContext = context;
-    File httpCacheDirectory = new File(mContext.getCacheDir(),  "responses");
-    int cacheSize = 10 * 1024 * 1024; // 10 MiB
-    Cache cache = new Cache(httpCacheDirectory, cacheSize);
+    //File httpCacheDirectory = new File(mContext.getCacheDir(),  "responses");
+    //int cacheSize = 10 * 1024 * 1024; // 10 MiB
+    //Cache cache = new Cache(httpCacheDirectory, cacheSize);
 
     //手动创建一个OkHttpClient并设置超时时间
     mHttpClientBuilder = new OkHttpClient.Builder();
     mHttpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
     mHttpClientBuilder.addNetworkInterceptor(REWRITE_RESPONSE_INTERCEPTOR)
         //.addInterceptor(OFFLINE_INTERCEPTOR)
+        //.addInterceptor(TOKEN_INTERCEPTOR)
         //.cache(cache)
         .build();
     mRetrofit = new Retrofit.Builder().client(mHttpClientBuilder.build())
-        .baseUrl(DOMAIN_TEST_sit)
+        .baseUrl("http://sit.51xiuj.com")
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .build();
@@ -68,14 +64,6 @@ public class CdAppModule {
 
   public CdIHttpApiService provideAuthenticationService() {
     return mRetrofit.create(CdIHttpApiService.class);
-  }
-
-  Retrofit provideRetrofit() {
-    return mRetrofit;
-  }
-
-  OkHttpClient.Builder provideOkHttpClient() {
-    return mHttpClientBuilder;
   }
 
   private static final Interceptor REWRITE_RESPONSE_INTERCEPTOR = new Interceptor() {
@@ -100,29 +88,21 @@ public class CdAppModule {
     }
   };
 
-  private final Interceptor OFFLINE_INTERCEPTOR = new Interceptor() {
+
+  private  final Interceptor TOKEN_INTERCEPTOR = new Interceptor() {
     @Override public Response intercept(Chain chain) throws IOException {
       Request request = chain.request();
+      Request.Builder requestBuilder = request.newBuilder();
+      String toekn =  CdSharedPreferencesUtils.getToken(mContext);
 
-      if (!isOnline(mContext)) {
-        int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
-        request = request.newBuilder()
-            .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
-            .build();
+      if (request.method().equals("POST")) {
+        requestBuilder.url(String.format("%s?tokens=%s", request.url(), toekn));
+      } else {
+        requestBuilder.url(String.format("%s&tokens=%s", request.url(), toekn));
       }
 
-      return chain.proceed(request);
+      return chain.proceed(requestBuilder.build());
     }
   };
 
-  private static boolean isOnline(Context context) {
-    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(
-        Context.CONNECTIVITY_SERVICE);
-    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-    return netInfo != null && netInfo.isConnectedOrConnecting();
-  }
-
-  public OkHttpClient.Builder getOkHttpClient() {
-    return mHttpClientBuilder;
-  }
 }

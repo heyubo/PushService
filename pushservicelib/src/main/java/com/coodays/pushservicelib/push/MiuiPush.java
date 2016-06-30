@@ -24,11 +24,24 @@ class MiuiPush extends BasePush{
     super(mContext);
   }
 
+  private static volatile BasePush mBashPush;
+
+  public static BasePush getInstance(Context context){
+    if (mBashPush==null) {
+      synchronized (MiuiPush.class) {
+        if(mBashPush==null) {
+          mBashPush = new MiuiPush(context);
+        }
+      }
+    }
+    return mBashPush;
+  }
+
   @Override public void init() {
     //小米4  token
     if(CdTools.isMainProcess(mContext)) {
       String appUserId = (String) CdSharedPreferencesUtils.get(mContext, CdSharedPreferencesUtils.KEY_APP_USER_ID, "");
-      String uploadToken = (String) CdSharedPreferencesUtils.get(mContext, appUserId, "");
+      String uploadToken = CdSharedPreferencesUtils.getTokenSingle(mContext, ""+PushManager.PHONE_TYPE_MIUI);
       if(TextUtils.isEmpty(uploadToken)) {//没有上传过， 才注册上传token
         MiPushClient.registerPush(mContext, APP_ID, APP_KEY);
       }
@@ -55,15 +68,12 @@ class MiuiPush extends BasePush{
     }
   };
 
-  @Override public void login(String app_user_id, String uploadTokenUrl) {
-    CdSharedPreferencesUtils.put(mContext, CdSharedPreferencesUtils.KEY_TOKEN_UPLOAD_URL, uploadTokenUrl);
+  @Override public void login(String app_user_id) {
     CdSharedPreferencesUtils.put(mContext, CdSharedPreferencesUtils.KEY_APP_USER_ID, app_user_id);
-    String token = (String) CdSharedPreferencesUtils.get(mContext, CdSharedPreferencesUtils.KEY_TOKEN , "");
+    String token = CdSharedPreferencesUtils.getTokenSingle(mContext, ""+PushManager.PHONE_TYPE_MIUI);
     //登入时， 还未获取到token值，
     if (TextUtils.isEmpty(token)) { //请求一次token， 请求成功，会再次触发上传token
       MiPushClient.registerPush(mContext, APP_ID, APP_KEY);
-    } else { //直接上传
-      startUploadToken(app_user_id, token, ""+PushManager.PHONE_TYPE_MIUI);
     }
   }
 
@@ -83,7 +93,4 @@ class MiuiPush extends BasePush{
     return TextUtils.isEmpty(regId);
   }
 
-  @Override void uploadToken(String app_user_id, String token) {
-    startUploadToken(app_user_id, token, ""+PushManager.PHONE_TYPE_MIUI);
-  }
 }
