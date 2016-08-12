@@ -17,6 +17,8 @@ import com.coodays.pushservicelib.push.PushManager;
 
 public class MainActivity extends Activity {
 
+  //gradlew clean build bintrayUpload -PbintrayUser=heyubo -PbintrayKey=daba6de8e4f078aff202aa14dac413af20ad7992 -PdryRun=false
+
   @Bind(R.id.et_appUserId) EditText mEtAppUserId; //输入用户上传到服务器的 ， AppUserId
   @Bind(R.id.btn_login) Button mBtnLogin;
   @Bind(R.id.btn_loginOut) Button mBtnLoginOut;
@@ -33,7 +35,7 @@ public class MainActivity extends Activity {
   @OnClick({ R.id.btn_login, R.id.btn_loginOut }) public void onClick(View view) {
     switch (view.getId()) {
       case R.id.btn_login:
-        PushManager.getInstance(this).login(mEtAppUserId.getText().toString());
+        PushManager.getInstance(this).login(mEtAppUserId.getText().toString(), "password");
         //"http://si.51xiuj.com/v1/token/set",
         break;
       case R.id.btn_loginOut:

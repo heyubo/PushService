@@ -51,10 +51,10 @@ public class PushManager {
     return mBashPush;
   }
 
-  public void login(String app_user_id) {
-    NeteasePush.getInstance(mContext).login(app_user_id);
-    HuaweiPush.getInstance(mContext).login(app_user_id);
-    MiuiPush.getInstance(mContext).login(app_user_id);
+  public void login(String app_user_id, String password) {
+    NeteasePush.getInstance(mContext).login(app_user_id, password);
+    HuaweiPush.getInstance(mContext).login(app_user_id, password);
+    MiuiPush.getInstance(mContext).login(app_user_id, password);
   }
 
   public void loginOut() {
@@ -67,6 +67,8 @@ public class PushManager {
     NeteasePush.getInstance(mContext).init();
     HuaweiPush.getInstance(mContext).init();
     MiuiPush.getInstance(mContext).init();
+    //清除缓存的 ， 收到过的消息 需要过滤的message_key
+    CdSharedPreferencesUtils.put(mContext, "receiver_key", "");
   }
 
   public String getToken() {
@@ -81,11 +83,11 @@ public class PushManager {
     context.sendBroadcast(intent);
   }
 
-  /**
-   * 设置 回传收到消息 接口
-   * @param readMessageUrl
-   */
-  public void setReadMessageUrl(String readMessageUrl) {
-    CdSharedPreferencesUtils.put(mContext , CdSharedPreferencesUtils.KEY_READ_MESSAGE_URL, readMessageUrl);
-  }
+  ///**
+  // * 设置 回传收到消息 接口
+  // * @param readMessageUrl
+  // */
+  //public void setReadMessageUrl(String readMessageUrl) {
+  //  CdSharedPreferencesUtils.put(mContext , CdSharedPreferencesUtils.KEY_READ_MESSAGE_URL, readMessageUrl);
+  //}
 }

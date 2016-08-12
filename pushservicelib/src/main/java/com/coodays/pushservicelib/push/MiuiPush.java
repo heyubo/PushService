@@ -17,8 +17,8 @@ class MiuiPush extends BasePush{
 
   private final static String TAG = "MiuiPush";
 
-  private final static String APP_ID = "2882303761517469134";
-  private final static String APP_KEY = "5631746994134";
+  private String APP_ID = "";
+  private String APP_KEY = "";
 
   MiuiPush(Context mContext) {
     super(mContext);
@@ -40,9 +40,10 @@ class MiuiPush extends BasePush{
   @Override public void init() {
     //小米4  token
     if(CdTools.isMainProcess(mContext)) {
-      String appUserId = (String) CdSharedPreferencesUtils.get(mContext, CdSharedPreferencesUtils.KEY_APP_USER_ID, "");
+     // String appUserId = (String) CdSharedPreferencesUtils.get(mContext, CdSharedPreferencesUtils.KEY_APP_USER_ID, "");
       String uploadToken = CdSharedPreferencesUtils.getTokenSingle(mContext, ""+PushManager.PHONE_TYPE_MIUI);
       if(TextUtils.isEmpty(uploadToken)) {//没有上传过， 才注册上传token
+        getSDKInfo();
         MiPushClient.registerPush(mContext, APP_ID, APP_KEY);
       }
       CdLogUtils.v("miuiPush", " init(). token " +uploadToken);
@@ -68,11 +69,12 @@ class MiuiPush extends BasePush{
     }
   };
 
-  @Override public void login(String app_user_id) {
+  @Override public void login(String app_user_id, String password) {
     CdSharedPreferencesUtils.put(mContext, CdSharedPreferencesUtils.KEY_APP_USER_ID, app_user_id);
     String token = CdSharedPreferencesUtils.getTokenSingle(mContext, ""+PushManager.PHONE_TYPE_MIUI);
     //登入时， 还未获取到token值，
     if (TextUtils.isEmpty(token)) { //请求一次token， 请求成功，会再次触发上传token
+      getSDKInfo();
       MiPushClient.registerPush(mContext, APP_ID, APP_KEY);
     }
   }
@@ -91,6 +93,15 @@ class MiuiPush extends BasePush{
     String appUserId = (String) CdSharedPreferencesUtils.get(mContext, CdSharedPreferencesUtils.KEY_APP_USER_ID, "");
     String regId = (String) CdSharedPreferencesUtils.get(mContext, appUserId, "");
     return TextUtils.isEmpty(regId);
+  }
+
+  private void getSDKInfo() {
+    if (TextUtils.isEmpty(APP_ID)) {
+      APP_ID = CdTools.getMetaDataValue(mContext, "com.xiaomi.push.sdk.app_id");
+    }
+    if (TextUtils.isEmpty(APP_KEY)) {
+      APP_KEY = CdTools.getMetaDataValue(mContext, "com.xiaomi.push.sdk.app_key");
+    }
   }
 
 }

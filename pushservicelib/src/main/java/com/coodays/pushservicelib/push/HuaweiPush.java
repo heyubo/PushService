@@ -36,7 +36,8 @@ class HuaweiPush extends BasePush {
     }
   }
 
-  @Override public void login(String app_user_id) {
+
+  @Override public void login(String app_user_id, String password) {
     CdSharedPreferencesUtils.put(mContext, CdSharedPreferencesUtils.KEY_APP_USER_ID, app_user_id);
     String token = CdSharedPreferencesUtils.getTokenSingle(mContext, ""+PushManager.PHONE_TYPE_HUAWEI);
     //登入时， 还未获取到token值，

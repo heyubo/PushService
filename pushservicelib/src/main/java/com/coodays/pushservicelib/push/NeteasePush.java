@@ -1,7 +1,7 @@
 package com.coodays.pushservicelib.push;
 
 import android.content.Context;
-import android.content.Intent;
+import android.text.TextUtils;
 import com.coodays.pushservicelib.bean.CdNeteaseRegisterBean;
 import com.coodays.pushservicelib.components.modules.CdAppModule;
 import com.coodays.pushservicelib.network.CdIHttpApiService;
@@ -18,8 +18,11 @@ import com.netease.nimlib.sdk.StatusCode;
 import com.netease.nimlib.sdk.auth.AuthService;
 import com.netease.nimlib.sdk.auth.AuthServiceObserver;
 import com.netease.nimlib.sdk.auth.LoginInfo;
+import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.MsgServiceObserve;
+import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -34,9 +37,13 @@ import rx.schedulers.Schedulers;
  *         用app_user_id当做云信账号， 云信账号就是 token
  *         登入成功后，会广播发送 token（也就是云信账号）
  *         包括登入, 注册, 上传token, 接收推送消息等
+ *
+ *
  */
 class NeteasePush extends BasePush {
-
+  private String APP_KEY = "";
+  private String APP_SECRET = "";
+  private String APP_Nonce = "";
   private final static String TAG = NeteasePush.class.getSimpleName();
 
   /**
@@ -45,7 +52,13 @@ class NeteasePush extends BasePush {
    */
   private IMMessage mLastMessage;
   private String mAccout;//云信注册账号
+  private String mPassword;//云信账号密码
   private AbortableFuture<LoginInfo> loginRequest;
+
+  private boolean isRegister;
+  private boolean isUpdate;
+
+  private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
   private NeteasePush(Context context) {
     super(context);
@@ -72,7 +85,7 @@ class NeteasePush extends BasePush {
   /**
    * @param appUserId 账号 或 token
    */
-  @Override public void login(String appUserId) {
+  @Override public void login(String appUserId, String password) {
     if (appUserId == null || appUserId.equals("")) {
       CdLogUtils.e(TAG, " push login account is empty " + appUserId);
       return;
@@ -82,19 +95,24 @@ class NeteasePush extends BasePush {
       CdLogUtils.v(TAG, " push loginInfo !=null , don't need login " + appUserId + " " + getStatus());
       return;
     }
+    NIMClient.getService(MsgService.class).clearChattingHistory(appUserId, SessionTypeEnum.None);
     CdSharedPreferencesUtils.put(mContext, CdSharedPreferencesUtils.KEY_APP_USER_ID, appUserId);
     CdSharedPreferencesUtils.savaToken(mContext, "" + PushManager.PHONE_TYPE_DEFAULT, appUserId);
 
     //下面是第一次登入
-    info = new LoginInfo(appUserId, DEFAULT_PASSWORD); // config...
+    info = new LoginInfo(appUserId, password); // config...
     CdLogUtils.d(TAG, " netease push login() " + appUserId + " current status:" + getStatus());
     this.mAccout = appUserId;
+    this.mPassword = password;
     if (!isLogin()) {
       //针对 正在连接中的情况，先退出再登入
       if (getStatus().equals(StatusCode.LOGINING.toString()) || getStatus().equals(
           StatusCode.CONNECTING.toString())) {
         //NIMClient.getService(AuthService.class).logout();
         CdLogUtils.e(TAG, " push login islogining " + appUserId);
+        if (loginRequest==null) {
+          loginRequest = NIMClient.getService(AuthService.class).login(info);
+        }
         loginRequest.setCallback(callback);
       } else {
         loginRequest = NIMClient.getService(AuthService.class).login(info);
@@ -111,6 +129,8 @@ class NeteasePush extends BasePush {
   }
 
   @Override public void loginOut() {
+    isRegister =false;
+    isUpdate = false;
     NIMClient.getService(AuthService.class).logout();
     removeMessageCallback();
     CdSharedPreferencesUtils.remove(mContext, "account");
@@ -158,28 +178,28 @@ class NeteasePush extends BasePush {
   // 如果已经存在用户登录信息，返回LoginInfo，否则返回null即可
   private LoginInfo loginInfo() {
     String accout = (String) CdSharedPreferencesUtils.get(mContext, "account", "");
+    String password = (String) CdSharedPreferencesUtils.get(mContext, "password", "");
     if (accout != null && !accout.equals("")) {
-      return new LoginInfo(accout, DEFAULT_PASSWORD);
+      return new LoginInfo(accout, password);
     }
     return null;
   }
 
   /**
-   * 注册云信账号
+   * 注册云信账号,
+   * 注册要后台服务器去注册， 这里暂时保留 ，兼容以前使用微守护的appkey转 51xiu appkey 过度
    */
   private void register(final String account, final String password) {
     if (account == null || account.equals("")) {
       CdLogUtils.e(TAG, "push register fail , account is empty " + account);
       return;
     }
-    //String appKey = "aca00f3be88dfe5de5d00fda44fc0113";
-    String appSecret = "e07267dcf7d5";
-    String nonce = "12345";
+    getSDKInfo();
     String curTime = String.valueOf((new Date()).getTime() / 1000L);
-    String checkSum = CheckSumBuilder.getCheckSum(appSecret, nonce, curTime);//参考 计算CheckSum的java代码
+    String checkSum = CheckSumBuilder.getCheckSum(APP_SECRET, APP_Nonce, curTime);//参考 计算CheckSum的java代码
 
     final CdIHttpApiService httpApiService = CdAppModule.getInstantce(mContext).provideAuthenticationService();
-    Observable<CdNeteaseRegisterBean> observable = httpApiService.neteaseRegister(curTime, checkSum, account, password);
+    Observable<CdNeteaseRegisterBean> observable = httpApiService.neteaseRegister(APP_KEY, APP_Nonce, curTime, checkSum, account, password);
     observable.subscribeOn(Schedulers.io())
         .observeOn(Schedulers.io())
         .unsubscribeOn(AndroidSchedulers.mainThread())
@@ -195,13 +215,55 @@ class NeteasePush extends BasePush {
           }
 
           @Override public void onNext(CdNeteaseRegisterBean s) {
-            CdLogUtils.d(TAG, "upload push token " + s.getCode());
+            CdLogUtils.d(TAG, "register  push token " + s.getCode() + " " + s.getDesc() );
+            isRegister = true;
             if (s.getCode() == 200) {
-              login(account);
+              if (!isRegister) {
+                login(account, password);
+              }
               //注册成功， 上传token到服务器, token就用的 云信id 即app_user_id
-            } else if (s.getCode() == 414) { //此部分应该是处理密码错误，
-              if (s.getDesc().equals("already register")) {//414参数错误，中有重复注册"))
-                login(account);
+            } else if (s.getCode() == 414) {
+              if (s.getDesc()!=null && s.getDesc().equals("already register")) {//414参数错误，中有重复注册"))
+                login(account, password);
+              }
+            }
+          }
+        });
+  }
+
+  private void updateToken(final String account, final String password) {
+    if (account == null || account.equals("")) {
+      CdLogUtils.e(TAG, "push register fail , account is empty " + account);
+      return;
+    }
+    getSDKInfo();
+    String curTime = String.valueOf((new Date()).getTime() / 1000L);
+    String checkSum = CheckSumBuilder.getCheckSum(APP_SECRET, APP_Nonce, curTime);//参考 计算CheckSum的java代码
+
+    final CdIHttpApiService httpApiService = CdAppModule.getInstantce(mContext).provideAuthenticationService();
+    Observable<CdNeteaseRegisterBean> observable = httpApiService.neteaseUpdateToken(APP_KEY, APP_Nonce, curTime, checkSum, account, password);
+    observable.subscribeOn(Schedulers.io())
+        .observeOn(Schedulers.io())
+        .unsubscribeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<CdNeteaseRegisterBean>() {
+          @Override public void onCompleted() {
+            CdLogUtils.v("TAG", " onCompleted ");
+          }
+
+          @Override public void onError(Throwable e) {
+            if (e != null) {
+              CdLogUtils.v(TAG, " onError " + e.getMessage());
+            }
+          }
+
+          @Override public void onNext(CdNeteaseRegisterBean s) {
+            CdLogUtils.d(TAG, "update token " + s.getCode() + s.getDesc() + " pass" + password);
+            isUpdate = true;
+            if (s.getCode() == 200) {
+              login(account, password);
+            } else if (s.getCode() == 414) {
+              if (s.getDesc().contains("not register")) {
+                register(account, password);
               }
             }
           }
@@ -219,6 +281,7 @@ class NeteasePush extends BasePush {
       NIMClient.toggleNotification(true);
       //广播发送token值， 云信账号 就是token
       CdSharedPreferencesUtils.put(mContext, "account", loginInfo.getAccount());
+      CdSharedPreferencesUtils.put(mContext, "password", loginInfo.getToken());
       PushManager.sendBroadcastToken(mContext);
       init();
     }
@@ -227,13 +290,17 @@ class NeteasePush extends BasePush {
       //如果达到最大测试免费账号100个，也会返回302 ，状态是密码错误, 没注册也是302
       CdLogUtils.d(TAG, "push login fail, errorCode: " + i);
       //注册账号
-      if (i == 302 || i == 404) {//302 用户名或密码错误, 404对象不存在
-        register(mAccout, DEFAULT_PASSWORD);
+      if (i == 302 || i == 404) {//302 用户名或密码错误(有可能是没注册）, 404对象不存在
+        if (!isRegister) {  //试试注册，注册成功，继续登入
+          register(mAccout, mPassword);
+        } else if (!isUpdate) { //注册过了， 还是302，就试试修改密码
+          updateToken(mAccout, mPassword);
+        }
       } else if (i == 415 || i == 408) {//客户端网络, 408 超时
         NIMClient.getService(AuthService.class).logout();
-        login(mAccout);
+        login(mAccout, mPassword);
       } else {
-        login(mAccout);
+        login(mAccout, mPassword);
       }
     }
 
@@ -256,6 +323,14 @@ class NeteasePush extends BasePush {
     }
   };
 
+  private void getSDKInfo() {
+    if (TextUtils.isEmpty(APP_KEY)) {
+      APP_KEY = CdTools.getMetaDataValue(mContext, "com.netease.nim.appKey");
+      APP_SECRET = CdTools.getMetaDataValue(mContext, "com.netease.nim.appSecret");
+      APP_Nonce = CdTools.getMetaDataValue(mContext, "com.netease.nim.appNonce");
+    }
+  }
+
   /**
    * 处理消息
    */
@@ -272,17 +347,13 @@ class NeteasePush extends BasePush {
         + " "
         + message.getPushContent()
         + " "
-        + message.getPushPayload());
-    if (message.getFromAccount().equals("qqqqq2")) {//后台的推送账号
-      String pushContet = message.getPushContent();
-      if (pushContet == null || pushContet.equals("")) {
-        //因为之前定义的 getPushContent最大字节数只能150，  导致部分推送就无法发送
-        //这里针对大于150字节的内容，就用pushPayload 来做消息推送体， 最大字节2k
-        //这里还有问题 ，map转json  [] {}等不完全
-        //pushContet = Utils.simpleMapToJsonStr(message.getPushPayload());
-        pushContet = CdJsonUtils.hashMapToJson((HashMap) message.getPushPayload());
-      }
-      parseMessage(pushContet);
-    }
+        + message.getPushPayload() + " time:" + sdf.format(new Date(message.getTime())));
+    //if (message.getFromAccount().equals(DEFAULT_SERVER_ACCOUNT)) {//后台的推送账号
+    //用pushPayload 来做消息推送体， 最大字节2k
+    String pushContet = CdJsonUtils.hashMapToJson((HashMap) message.getPushPayload());
+    CdLogUtils.dWriteLog(TAG, pushContet, "推送log");
+    parseMessage(pushContet);
+    //}
   }
+
 }

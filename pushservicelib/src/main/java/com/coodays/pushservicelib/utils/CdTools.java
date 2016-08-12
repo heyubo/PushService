@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -531,6 +532,34 @@ public class CdTools {
     //取消正在执行的服务
     manager.cancel(pendingIntent);
     context.stopService(intent);
+  }
+
+  /**
+   * 读取Application下的MetaData
+   * 对于纯数字类型的string ，自动去除 前缀“value:”（如果有的话）
+   */
+  public static String getMetaDataValue(Context context, String name) {
+    Object value = null;
+    PackageManager packageManager = context.getPackageManager();
+    ApplicationInfo applicationInfo;
+    try {
+      applicationInfo = packageManager.getApplicationInfo(context
+          .getPackageName(), PackageManager.GET_META_DATA);
+      if (applicationInfo != null && applicationInfo.metaData != null) {
+        value = applicationInfo.metaData.get(name);
+      }
+    } catch (PackageManager.NameNotFoundException e) {
+      throw new RuntimeException(
+          "Could not read the name in the manifest file.", e);
+    }
+    if (value == null) {
+      throw new RuntimeException("The name '" + name + "' is not defined in the manifest file's meta data.");
+    }
+    String str = String.valueOf(value);
+    if (str.startsWith("value:")) {//去除避免数据转换的前缀
+      str = str.split("value:")[1];
+    }
+    return str;
   }
 
 }
