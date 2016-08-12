@@ -15,3 +15,32 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+##---------------Begin: proguard configauration for  xiaomi ---------------
+-keep class com.coodays.cd51Repair.bean.MiuiPushMessageReceiver { *; }
+##-------------------------------------------------------------------------
+
+##--------------------------------------------------------------------------
+-keep class com.baidu.** {*;}
+-keep class vi.com.** {*;}
+-dontwarn com.baidu.**
+##-------------------------------------------------------------------------
+
+
+##---------------Begin:proguard configuration for netease --------------
+-dontwarn com.netease.**
+-dontwarn io.netty.**
+-keep class com.netease.** {*;}
+##---------------End: proguard confiuration for netease ----------------
+
+##---------------Begin: proguard configauration for  huawei ---------------
+-keep class com.huawei.android.pushagent.**{*;}
+-keep class com.huawei.android.pushselfshow.**{*;}
+-keep class com.huawei.android.microkernel.**{*;}
+-dontwarn com.huawei.android.pushagent.**
+-dontwarn com.huawei.android.pushselfshow.**
+-dontwarn com.huawei.android.microkernel.**
+##-------------------------------------------------------------------------
+
+##---------------Begin:proguard configuration for pushlib --------------
+-keepnames class com.coodays.pushservicelib.bean.** { *; }
+##---------------End: proguard confiuration for pushlib ----------------
